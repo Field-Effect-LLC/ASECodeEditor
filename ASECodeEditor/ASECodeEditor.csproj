@@ -11,6 +11,7 @@
     <AssemblyName>ASECodeEditor</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <NuGetPackageImportStamp>c0f5165d</NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -30,12 +31,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AccessApi">
+      <HintPath>..\..\..\..\..\..\..\Program Files\Field Effect, LLC\Access SQL Editor\AccessApi.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
     <Reference Include="DAOApi, Version=1.5.1.2, Culture=neutral, PublicKeyToken=19cb4234a61cee95, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <EmbedInteropTypes>False</EmbedInteropTypes>
       <HintPath>..\..\..\..\..\..\..\Program Files\Field Effect, LLC\Access SQL Editor\DAOApi.dll</HintPath>
     </Reference>
-    <Reference Include="MsaSQLEditor, Version=1.0.9993.0, Culture=neutral, PublicKeyToken=f83e2a14d4ce063f, processorArchitecture=MSIL">
+    <Reference Include="MsaSQLEditor, Version=1.0.9994.0, Culture=neutral, PublicKeyToken=f83e2a14d4ce063f, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\..\Program Files\Field Effect, LLC\Access SQL Editor\MsaSQLEditor.dll</HintPath>
     </Reference>
@@ -43,7 +48,12 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\..\Program Files\Field Effect, LLC\Access SQL Editor\NetOffice.dll</HintPath>
     </Reference>
-    <Reference Include="ScintillaNET">
+    <Reference Include="OfficeApi">
+      <HintPath>..\..\..\..\..\..\..\Program Files\Field Effect, LLC\Access SQL Editor\OfficeApi.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="ScintillaNET, Version=3.0.1.0, Culture=neutral, PublicKeyToken=948d6c9751444115, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\..\Program Files\Field Effect, LLC\Access SQL Editor\ScintillaNET.dll</HintPath>
     </Reference>
     <Reference Include="System" />
@@ -91,10 +101,14 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="FodyWeavers.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
@@ -103,6 +117,13 @@
 xcopy /y "$(TargetPath)" "%25dest%25"
 </PostBuildEvent>
   </PropertyGroup>
+  <Import Project="..\packages\Fody.1.29.3\build\portable-net+sl+win+wpa+wp\Fody.targets" Condition="Exists('..\packages\Fody.1.29.3\build\portable-net+sl+win+wpa+wp\Fody.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Fody.1.29.3\build\portable-net+sl+win+wpa+wp\Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Fody.1.29.3\build\portable-net+sl+win+wpa+wp\Fody.targets'))" />
+  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
