@@ -55,9 +55,9 @@ namespace ASECodeEditor
             this.LangField = new System.Windows.Forms.TextBox();
             this.TableKey = new System.Windows.Forms.TextBox();
             this.FieldName = new System.Windows.Forms.TextBox();
-            this.TableName = new System.Windows.Forms.TextBox();
             this.SaveRecord = new System.Windows.Forms.Button();
             this.NewRecord = new System.Windows.Forms.Button();
+            this.TableName = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // label1
@@ -196,17 +196,6 @@ namespace ASECodeEditor
             this.FieldName.TabIndex = 2;
             this.FieldName.Text = global::ASECodeEditor.Properties.Settings.Default.LastTableField;
             // 
-            // TableName
-            // 
-            this.TableName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.TableName.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::ASECodeEditor.Properties.Settings.Default, "LastTableName", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.TableName.Location = new System.Drawing.Point(84, 20);
-            this.TableName.Name = "TableName";
-            this.TableName.Size = new System.Drawing.Size(130, 20);
-            this.TableName.TabIndex = 0;
-            this.TableName.Text = global::ASECodeEditor.Properties.Settings.Default.LastTableName;
-            // 
             // SaveRecord
             // 
             this.SaveRecord.Location = new System.Drawing.Point(71, 228);
@@ -227,11 +216,20 @@ namespace ASECodeEditor
             this.NewRecord.UseVisualStyleBackColor = true;
             this.NewRecord.Click += new System.EventHandler(this.NewRecord_Click);
             // 
+            // TableName
+            // 
+            this.TableName.FormattingEnabled = true;
+            this.TableName.Location = new System.Drawing.Point(84, 17);
+            this.TableName.Name = "TableName";
+            this.TableName.Size = new System.Drawing.Size(130, 21);
+            this.TableName.TabIndex = 19;
+            // 
             // ASECodeEditorWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(226, 283);
+            this.Controls.Add(this.TableName);
             this.Controls.Add(this.NewRecord);
             this.Controls.Add(this.SaveRecord);
             this.Controls.Add(this.label5);
@@ -248,7 +246,6 @@ namespace ASECodeEditor
             this.Controls.Add(this.label2);
             this.Controls.Add(this.FieldName);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.TableName);
             this.HideOnClose = true;
             this.Name = "ASECodeEditorWindow";
             this.Text = "ASECodeEditorWindow";
@@ -260,7 +257,6 @@ namespace ASECodeEditor
 
         #endregion
 
-        private System.Windows.Forms.TextBox TableName;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox FieldName;
@@ -277,5 +273,6 @@ namespace ASECodeEditor
         private System.Windows.Forms.TextBox LangField;
         private System.Windows.Forms.Button SaveRecord;
         private System.Windows.Forms.Button NewRecord;
+        private System.Windows.Forms.ComboBox TableName;
     }
 }
