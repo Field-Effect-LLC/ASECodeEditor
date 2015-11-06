@@ -15,6 +15,9 @@ namespace ASECodeEditor
 {
     public partial class ASECodeEditorWindow : ToolWindow
     {
+        private IPluginContext2 _PluginContext;
+        private bool _IsInit = false;
+
         public IPluginContext2 PluginContext { get; set; }
         private Editor _EditorWindow;
 
@@ -23,11 +26,40 @@ namespace ASECodeEditor
 
         private IStatusView _StatusView;
 
+        private void InitPluginContext(IPluginContext2 pluginContext)
+        {
+            if (this._IsInit)
+                return;
+
+            this._PluginContext = pluginContext;
+
+            this.db = (dao.Database)
+                    NetOffice.Factory.CreateKnownObjectFromComProxy(
+                        null,
+                        this.PluginContext.Database.CurrentDb(),
+                        typeof(dao.Database));
+
+            this.PopulateTableDropdown();
+
+            this._IsInit = true;
+        }
+
+        private void PopulateTableDropdown()
+        {
+            this.TableName.Items.Clear();
+            foreach (var t in db.TableDefs)
+            {
+                if (!t.Name.StartsWith("MSys"))
+                    this.TableName.Items.Add(t.Name);
+            }
+        }
+
         public ASECodeEditorWindow()
         {
             InitializeComponent();
             this._EditorWindow = new Editor();
             this._EditorWindow.HideOnClose = true;
+            this.Shown += ASECodeEditorWindow_Shown;
         }
 
         private IStatusView StatusView
@@ -51,19 +83,12 @@ namespace ASECodeEditor
 
         private void ASECodeEditorWindow_Shown(object sender, EventArgs e)
         {
-
-
+            this.InitPluginContext(this.PluginContext);
         }
 
         private void Connect_Click_1(object sender, EventArgs e)
         {
             Properties.Settings.Default.Save();
-
-            db = (dao.Database)
-                    NetOffice.Factory.CreateKnownObjectFromComProxy(
-                        null,
-                        this.PluginContext.Database.CurrentDb(),
-                        typeof(dao.Database));
 
             try
             { 
