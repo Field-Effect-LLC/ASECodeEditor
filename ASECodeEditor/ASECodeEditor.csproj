@@ -11,7 +11,7 @@
     <AssemblyName>ASECodeEditor</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <NuGetPackageImportStamp>c0f5165d</NuGetPackageImportStamp>
+    <NuGetPackageImportStamp>de4db3b1</NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -32,29 +32,25 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AccessApi">
-      <HintPath>..\..\..\..\..\..\..\Program Files\Field Effect, LLC\Access SQL Editor\AccessApi.dll</HintPath>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </Reference>
-    <Reference Include="DAOApi, Version=1.5.1.2, Culture=neutral, PublicKeyToken=19cb4234a61cee95, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\Git Clones\MsaSQLEditor\MsaSQLEditor\bin\Debug\AccessApi.dll</HintPath>
       <EmbedInteropTypes>False</EmbedInteropTypes>
-      <HintPath>..\..\..\..\..\..\..\Program Files\Field Effect, LLC\Access SQL Editor\DAOApi.dll</HintPath>
     </Reference>
-    <Reference Include="MsaSQLEditor, Version=1.0.9994.0, Culture=neutral, PublicKeyToken=f83e2a14d4ce063f, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\..\Program Files\Field Effect, LLC\Access SQL Editor\MsaSQLEditor.dll</HintPath>
+    <Reference Include="DAOApi">
+      <HintPath>D:\Git Clones\MsaSQLEditor\MsaSQLEditor\bin\Debug\DAOApi.dll</HintPath>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
-    <Reference Include="NetOffice, Version=1.5.1.2, Culture=neutral, PublicKeyToken=297f57b43ae7c1de, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\..\Program Files\Field Effect, LLC\Access SQL Editor\NetOffice.dll</HintPath>
+    <Reference Include="MsaSQLEditor">
+      <HintPath>D:\Git Clones\MsaSQLEditor\MsaSQLEditor\bin\Debug\MsaSQLEditor.dll</HintPath>
+    </Reference>
+    <Reference Include="NetOffice">
+      <HintPath>D:\Git Clones\MsaSQLEditor\MsaSQLEditor\bin\Debug\NetOffice.dll</HintPath>
     </Reference>
     <Reference Include="OfficeApi">
-      <HintPath>..\..\..\..\..\..\..\Program Files\Field Effect, LLC\Access SQL Editor\OfficeApi.dll</HintPath>
+      <HintPath>D:\Git Clones\MsaSQLEditor\MsaSQLEditor\bin\Debug\OfficeApi.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
-    <Reference Include="ScintillaNET, Version=3.0.1.0, Culture=neutral, PublicKeyToken=948d6c9751444115, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\..\Program Files\Field Effect, LLC\Access SQL Editor\ScintillaNET.dll</HintPath>
+    <Reference Include="ScintillaNET">
+      <HintPath>D:\Git Clones\MsaSQLEditor\MsaSQLEditor\bin\Debug\ScintillaNET.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -65,9 +61,8 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="WeifenLuo.WinFormsUI.Docking, Version=2.9.1.0, Culture=neutral, PublicKeyToken=5cded1a1a0a7b481, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\..\Program Files\Field Effect, LLC\Access SQL Editor\WeifenLuo.WinFormsUI.Docking.dll</HintPath>
+    <Reference Include="WeifenLuo.WinFormsUI.Docking">
+      <HintPath>D:\Git Clones\MsaSQLEditor\MsaSQLEditor\bin\Debug\WeifenLuo.WinFormsUI.Docking.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -101,7 +96,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -117,13 +111,6 @@
 xcopy /y "$(TargetPath)" "%25dest%25"
 </PostBuildEvent>
   </PropertyGroup>
-  <Import Project="..\packages\Fody.1.29.3\build\portable-net+sl+win+wpa+wp\Fody.targets" Condition="Exists('..\packages\Fody.1.29.3\build\portable-net+sl+win+wpa+wp\Fody.targets')" />
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('..\packages\Fody.1.29.3\build\portable-net+sl+win+wpa+wp\Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Fody.1.29.3\build\portable-net+sl+win+wpa+wp\Fody.targets'))" />
-  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
