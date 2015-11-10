@@ -6,6 +6,7 @@ using MsaSQLEditor;
 using MsaSQLEditor.DerivedControls;
 using MsaSQLEditor.Interfaces;
 using System.Windows.Forms;
+using System.Reflection;
 
 namespace ASECodeEditor
 {
@@ -13,6 +14,14 @@ namespace ASECodeEditor
     {
         private IPluginContext2 _Context;
         private ASECodeEditorWindow _CodeWindow;
+
+        public String Name
+        {
+            get
+            {
+                return "ASE Code Editor";
+            }
+        }
 
         public ASECodeEditor()
         { }
